@@ -186,10 +186,9 @@ export class EmailService {
       </p>
 
       <p style="color: #374151; font-size: 16px;">
-        Your application has now moved to the
-        <strong>Verification Deposit</strong> stage. Our team is completing the
-        remaining verification steps, and we'll notify you as soon as there is
-        an update.
+        Our team will review your signed agreement and release your funds. No
+        further action is needed right now — we'll notify you as soon as there
+        is an update.
       </p>
 
       <p style="color: #374151; font-size: 16px;">
@@ -500,15 +499,6 @@ export class EmailService {
       color: '#1a56db',
       icon: '&#9997;',
     },
-    // Stage 4: "Verification Deposit" — a positive, near-funding step. A small
-    // micro-deposit confirms routing details before funds are released.
-    VERIFICATION_DEPOSIT: {
-      title: 'Verification Deposit',
-      message:
-        "You're almost there! A small micro-deposit has been initiated to confirm your routing details before we release your funds. This is the final check before funding",
-      color: '#2563eb',
-      icon: '&#128176;',
-    },
     DOCUMENT_REQUEST: {
       title: 'Additional Documents Required',
       message:
@@ -567,7 +557,6 @@ export class EmailService {
       PHONE_VERIFICATION_PENDING: 'Phone Verification',
       DOCUMENT_REQUEST: 'Document Request',
       SIGN_LOAN_AGREEMENT: 'Sign Agreement',
-      VERIFICATION_DEPOSIT: 'Verification Deposit',
       FUNDED: 'Funded',
       DECLINED: 'Declined',
     };
@@ -760,9 +749,9 @@ export class EmailService {
         </div>
         <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 15px; margin: 20px 0;">
           <p style="color: #1e3a8a; font-size: 14px; margin: 0;">
-            <strong>Next Step:</strong> Your application has advanced to the
-            <strong>Verification Deposit</strong> stage. A small micro-deposit
-            will confirm your routing details before your funds are released.
+            <strong>Next Step:</strong> Our team will review your signed
+            agreement and release your funds. No further action is needed right
+            now — we'll be in touch as soon as there's an update.
           </p>
         </div>
         <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">

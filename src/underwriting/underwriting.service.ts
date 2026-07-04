@@ -24,7 +24,6 @@ const QUEUE_STATUSES = [
   ApplicationStatus.BANK_REJECTED,
   ApplicationStatus.PHONE_VERIFICATION_PENDING,
   ApplicationStatus.SIGN_LOAN_AGREEMENT,
-  ApplicationStatus.VERIFICATION_DEPOSIT,
   ApplicationStatus.DECLINED,
   ApplicationStatus.FUNDED,
 ];
@@ -162,8 +161,10 @@ export class UnderwritingService {
         loanTermMonths: app.loanTermMonths,
         monthlyPayment: Number(app.monthlyPayment),
         calculatedDti: Number(app.calculatedDti),
+        esign: !!app.loanAgreement?.signedAt,
       },
       selfReported: {
+        ipAddress: user.tcpaIpAddress,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,

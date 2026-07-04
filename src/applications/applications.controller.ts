@@ -152,6 +152,7 @@ export class ApplicationsController {
     monthlyPayment: number;
     calculatedDti: number;
     statusReason?: string;
+    loanAgreement?: { signedAt?: Date | null } | null;
     user: {
       id: string;
       firstName: string;
@@ -170,6 +171,10 @@ export class ApplicationsController {
       statusReason: app.statusReason ?? null,
       stageIndex: stage.index,
       stageLabel: stage.label,
+      // True once the borrower has e-signed. The status stays
+      // SIGN_LOAN_AGREEMENT afterward (signed, awaiting a manual fund release),
+      // so the portal reads this to mark the "Sign Agreement" stage complete.
+      esign: !!app.loanAgreement?.signedAt,
       requestedAmount: Number(app.requestedAmount),
       loanTermMonths: app.loanTermMonths,
       monthlyPayment: Number(app.monthlyPayment),

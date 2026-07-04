@@ -39,7 +39,6 @@ export enum ApplicationStatus {
   BANK_REJECTED = 'BANK_REJECTED', // banned routing -> correction email
   PHONE_VERIFICATION_PENDING = 'PHONE_VERIFICATION_PENDING',
   SIGN_LOAN_AGREEMENT = 'SIGN_LOAN_AGREEMENT',
-  VERIFICATION_DEPOSIT = 'VERIFICATION_DEPOSIT',
   FUNDED = 'FUNDED', // terminal — set only by manual admin release
   DECLINED = 'DECLINED', // terminal off-ramp
 }
@@ -66,6 +65,6 @@ export enum Role {
 // Statuses an underwriter may release funds from. The release itself is always
 // a manual, human-in-the-loop action — never automated.
 export const RELEASABLE_STATUSES: ApplicationStatus[] = [
-  ApplicationStatus.VERIFICATION_DEPOSIT,
+  ApplicationStatus.SIGN_LOAN_AGREEMENT,
   ApplicationStatus.PENDING_VERIFICATION,
 ];

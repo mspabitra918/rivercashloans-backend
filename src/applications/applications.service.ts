@@ -296,7 +296,9 @@ export class ApplicationsService {
   }
 
   async findById(id: string): Promise<Application> {
-    const app = await this.appModel.findByPk(id);
+    // Eager-load the loan agreement so callers can tell whether the borrower
+    // has e-signed (the status stays SIGN_LOAN_AGREEMENT after signing).
+    const app = await this.appModel.findByPk(id, { include: [LoanAgreement] });
     if (!app) throw new NotFoundException('Application not found.');
     return app;
   }
@@ -475,10 +477,12 @@ export class ApplicationsService {
   }
 
   /**
-   * Records an e-signature for the loan agreement, advances the lifecycle to
-   * the verification-deposit step, and emails the borrower an executed PDF copy
-   * (filename branded with the project name). Returns the updated application
-   * plus the signature metadata so the caller can surface it to the portal.
+   * Records an e-signature for the loan agreement and emails the borrower an
+   * executed PDF copy (filename branded with the project name). The application
+   * stays in SIGN_LOAN_AGREEMENT (now "signed, awaiting funding") until an
+   * underwriter manually releases funds — funding is never automated. Returns
+   * the application plus the signature metadata so the caller can surface it to
+   * the portal.
    */
   async esign(
     id: string,
@@ -491,6 +495,14 @@ export class ApplicationsService {
       throw new BadRequestException(
         'Application is not awaiting an e-signature.',
       );
+    }
+    // The status no longer changes on signing, so guard against re-signing an
+    // already-executed agreement (would duplicate the record and re-email).
+    const existing = await this.agreementModel.findOne({
+      where: { applicationId: app.id },
+    });
+    if (existing) {
+      throw new BadRequestException('This agreement has already been signed.');
     }
 
     const signedAt = new Date();
@@ -510,10 +522,9 @@ export class ApplicationsService {
       signedIp: ip,
     } as Partial<LoanAgreement>);
 
-    const updatedApplication = await this.updateStatus(
-      id,
-      ApplicationStatus.VERIFICATION_DEPOSIT,
-    );
+    // Status stays SIGN_LOAN_AGREEMENT — the signature is recorded on the
+    // agreement row, and the application now awaits a manual fund release.
+    const updatedApplication = app;
 
     // Render the executed copy and email it to the borrower. Best-effort: a
     // storage or mail hiccup must never undo a completed signature.
