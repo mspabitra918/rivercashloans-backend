@@ -100,6 +100,7 @@ export class GatekeeperService {
       ApplicationStatus.MANUAL_REVIEW,
       reason,
     );
+    await this.email.underwriterReview(user.email, user.firstName, app?.id);
     return { status: ApplicationStatus.MANUAL_REVIEW, reason, dti };
   }
 }

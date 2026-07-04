@@ -291,6 +291,33 @@ export class EmailService {
     });
   }
 
+  async underwriterReview(
+    email: string,
+    firstName: string,
+    id: string,
+  ): Promise<void> {
+    const html = this.simpleLayout({
+      heading: 'Your Application Is Under Review',
+      color: '#f59e0b',
+      icon: '&#128197;', // 🕒
+      bodyHtml: `
+        <p style="color: #374151; font-size: 16px;">Hi ${firstName},</p>
+        <p style="color: #374151; font-size: 16px;">
+          Your loan application is currently under review by our underwriting team.
+          We'll notify you once a decision has been made.
+        </p>`,
+      cta: {
+        label: 'View Application Status',
+        url: `${process.env.FRONTEND_URL ?? ''}/dashboard?id=${id}`,
+      },
+    });
+    await this.sendEmail({
+      to: email,
+      subject: `Update — your application is under review | ${BRAND.name}`,
+      html,
+    });
+  }
+
   // Sent when funds are released.
   async funded(email: string, firstName: string): Promise<void> {
     const html = this.simpleLayout({
