@@ -8,8 +8,8 @@ const bcrypt = require('bcryptjs');
 // re-running won't create a duplicate (email is unique + ignoreDuplicates).
 module.exports = {
   async up(queryInterface) {
-    const email = process.env.ADMIN_EMAIL || 'admin@oakhillloans.com';
-    const password = process.env.ADMIN_PASSWORD || 'admin!!1234';
+    const email = process.env.ADMIN_EMAIL || 'admindavid@oakhillloans.com';
+    const password = process.env.ADMIN_PASSWORD || 'david__oakhillloans!!';
     if (!email || !password) {
       // Nothing to seed without bootstrap credentials — skip silently.
       return;
@@ -21,7 +21,7 @@ module.exports = {
       'admins',
       [
         {
-          name: process.env.ADMIN_NAME || 'Oakhill Admin',
+          name: process.env.ADMIN_NAME || 'David',
           email,
           password_hash: passwordHash,
           role: 'admin',
