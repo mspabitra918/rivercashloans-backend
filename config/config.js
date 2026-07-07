@@ -13,7 +13,7 @@ const dialectOptions =
 const fromEnv = {
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
-  database: process.env.DB_NAME || 'oakhill_loans',
+  database: process.env.DB_NAME || 'rivercash_loans',
   host: process.env.DB_HOST || 'localhost',
   port: Number(process.env.DB_PORT || 5432),
   dialect: 'postgres',

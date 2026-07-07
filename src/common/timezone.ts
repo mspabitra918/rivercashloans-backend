@@ -1,6 +1,6 @@
 /**
  * Application-wide time zone. Per business rule, all application timestamps for
- * oakhillloans.com are presented in US Pacific Time. We use the IANA zone (not
+ * rivercashloans.com are presented in US Pacific Time. We use the IANA zone (not
  * a fixed "PST" offset) so daylight saving is handled automatically — PST
  * (UTC−8) in winter, PDT (UTC−7) in summer.
  */

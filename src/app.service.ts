@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   getHealth() {
     return {
-      service: 'oakhill-backend',
+      service: 'rivercash-backend',
       status: 'ok',
       timestamp: new Date().toISOString(),
     };

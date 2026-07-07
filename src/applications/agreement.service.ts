@@ -39,7 +39,7 @@ export function formatPacificDateTime(d: Date): string {
   });
 }
 
-// Palette mirrored from the Oakhill_Loans_Loan_Agreement_Template.pdf.
+// Palette mirrored from the River Cash Loan_Agreement_Template.pdf.
 const COLORS = {
   gold: '#C8911B',
   dark: '#0F172A',
@@ -82,7 +82,7 @@ export class AgreementService {
   constructor(private readonly upload: UploadService) {}
 
   // Render the loan agreement PDF into an in-memory buffer, faithfully matching
-  // the Oakhill_Loans_Loan_Agreement_Template.pdf layout (3 pages). When opts.signed
+  // the rivercash_Loans_Loan_Agreement_Template.pdf layout (3 pages). When opts.signed
   // is set, the borrower signature block is stamped with the e-signature + date;
   // otherwise it shows the blank review copy.
   private renderPdf(
@@ -171,10 +171,12 @@ export class AgreementService {
         const header = () => {
           const topY = PAGE_MARGIN;
           doc.font('Helvetica-Bold').fontSize(24);
-          // Two-tone wordmark: "Oakhill Loans" gold + " Lending" dark.
-          doc.fillColor(COLORS.gold).text('Oakhill Loans', CONTENT_LEFT, topY, {
-            continued: true,
-          });
+          // Two-tone wordmark: "River Cash Loans" gold + " Lending" dark.
+          doc
+            .fillColor(COLORS.gold)
+            .text('River Cash Loans', CONTENT_LEFT, topY, {
+              continued: true,
+            });
           doc.fillColor(COLORS.dark).text(' Lending');
 
           doc
@@ -182,7 +184,7 @@ export class AgreementService {
             .fontSize(9.5)
             .fillColor(COLORS.muted)
             .text(
-              '355 S Grand Ave, Office #20 W, Los Angeles, CA 90071 | support@oakhillloans.com',
+              '355 S Grand Ave, Office #20 W, Los Angeles, CA 90071 | support@rivercashloans.com',
               CONTENT_LEFT,
               doc.y + 4,
               { width: CONTENT_WIDTH },
@@ -271,7 +273,7 @@ export class AgreementService {
           .fontSize(10.5)
           .fillColor(COLORS.body)
           .text(
-            `This Personal Loan Agreement (the "Agreement") is entered into as of ${agreementDate}, by and between Oakhill Loans ("Lender") and the individual identified below ("Borrower").`,
+            `This Personal Loan Agreement (the "Agreement") is entered into as of ${agreementDate}, by and between River Cash Loans ("Lender") and the individual identified below ("Borrower").`,
             CONTENT_LEFT,
             doc.y,
             { width: CONTENT_WIDTH, align: 'justify', lineGap: 4 },
@@ -404,7 +406,7 @@ export class AgreementService {
           { width: colW, lineGap: 2 },
         );
         doc.text(
-          'Authorized Representative for Oakhill Loans.',
+          'Authorized Representative for River Cash Loans.',
           rightX,
           introY,
           { width: colW, lineGap: 2 },
@@ -458,7 +460,7 @@ export class AgreementService {
           .font('Helvetica-Bold')
           .fontSize(9.5)
           .fillColor(COLORS.heading)
-          .text('Signature: Oakhill Loans Admin', rightX, sigLineY + 6, {
+          .text('Signature: River Cash Loans Admin', rightX, sigLineY + 6, {
             width: colW,
           });
 

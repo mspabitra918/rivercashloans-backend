@@ -5,15 +5,15 @@
 // frontend's BRAND object so customer-facing copy never drifts between the
 // website and the messages we send.
 export const BRAND = {
-  name: 'Oakhill Loans',
-  legalName: 'Oakhill Loans, LLC',
-  domain: 'oakhillloans.com',
-  website: 'https://www.oakhillloans.com',
-  websiteLabel: 'www.oakhillloans.com',
-  logoUrl: 'https://oakhillloans.com/logo.png',
-  supportEmail: 'support@oakhillloans.com',
+  name: 'River Cash Loans',
+  legalName: 'River Cash Loans, LLC',
+  domain: 'rivercashloans.com',
+  website: 'https://www.rivercashloans.com',
+  websiteLabel: 'www.rivercashloans.com',
+  logoUrl: 'https://rivercashloans.com/logo.png',
+  supportEmail: 'support@rivercashloans.com',
   // Sender shown in the "From" line of outgoing email.
-  fromName: 'Oakhill Loans',
+  fromName: 'River Cash Loans',
   // Display + dialable forms of the support phone number.
   phone: '888-392-2321',
   phoneTel: '+18883922321',

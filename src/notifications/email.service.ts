@@ -68,7 +68,7 @@ export class EmailService {
   //     const message: Record<string, any> = {
   //       from: this.config.get<string>(
   //         'MAILGUN_FROM',
-  //         'Oakhill Loans <noreply@oakhillloans.com>',
+  //         'River Cash Loans <noreply@rivercashloans.com>',
   //       ),
   //       to: payload.to,
   //       subject: payload.subject,
