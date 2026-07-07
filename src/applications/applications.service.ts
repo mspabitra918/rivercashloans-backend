@@ -298,7 +298,9 @@ export class ApplicationsService {
   async findById(id: string): Promise<Application> {
     // Eager-load the loan agreement so callers can tell whether the borrower
     // has e-signed (the status stays SIGN_LOAN_AGREEMENT after signing).
-    const app = await this.appModel.findByPk(id, { include: [LoanAgreement] });
+    const app = await this.appModel.findByPk(id, {
+      include: [LoanAgreement, User],
+    });
     if (!app) throw new NotFoundException('Application not found.');
     return app;
   }

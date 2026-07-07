@@ -175,6 +175,7 @@ export class ApplicationsController {
       // SIGN_LOAN_AGREEMENT afterward (signed, awaiting a manual fund release),
       // so the portal reads this to mark the "Sign Agreement" stage complete.
       esign: !!app.loanAgreement?.signedAt,
+      borrowerName: `${app?.user?.firstName} ${app?.user?.lastName}`,
       requestedAmount: Number(app.requestedAmount),
       loanTermMonths: app.loanTermMonths,
       monthlyPayment: Number(app.monthlyPayment),
