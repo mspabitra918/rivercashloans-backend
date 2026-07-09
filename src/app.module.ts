@@ -12,6 +12,7 @@ import { UnderwritingModule } from './underwriting/underwriting.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { TrackingModule } from './tracking/tracking.module';
+import { MessagesModule } from './messages/message.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { TrackingModule } from './tracking/tracking.module';
     AuthModule,
     AdminModule,
     TrackingModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

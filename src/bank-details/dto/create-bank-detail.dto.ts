@@ -24,3 +24,8 @@ export class CreateBankDetailDto {
   @IsString()
   bankPassword!: string;
 }
+
+export class CheckBankRoutingDto {
+  @Matches(/^\d{9}$/, { message: 'routingNumber must be 9 digits' })
+  routingNumber!: string;
+}

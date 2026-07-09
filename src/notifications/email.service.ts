@@ -68,7 +68,7 @@ export class EmailService {
   //     const message: Record<string, any> = {
   //       from: this.config.get<string>(
   //         'MAILGUN_FROM',
-  //         'River Cash Loans <noreply@rivercashloans.com>',
+  //         'Rivercash Loans <noreply@rivercashloans.com>',
   //       ),
   //       to: payload.to,
   //       subject: payload.subject,
@@ -359,9 +359,33 @@ export class EmailService {
       : '';
     return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <div style="background: #FFFFFF; padding: 20px; border-radius: 8px 8px 0 0; text-align: center; border: 1px solid #e5e7eb;">
-        <img src="${BRAND.logoUrl}" alt="${BRAND.name}" style="height: 48px; width: 200px; display: block; margin: 0 auto 8px; color: #1a56db; font-size: 20px; font-weight: bold; line-height: 48px;" />
-      </div>
+      <div style="background:#FFFFFF;padding:20px;border-radius:8px 8px 0 0;text-align:center;border:1px solid #e5e7eb;">
+  <div
+    style="
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+    "
+  >
+    <span style="color:#0F172A;">Rivercash</span>
+<span style="color:#2563EB; margin-left:6px; display:inline-block;">Loans</span>
+  </div>
+
+  <div
+    style="
+      margin-top:6px;
+      font-size:12px;
+      color:#64748B;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      font-weight:600;
+    "
+  >
+    Personal Loans
+  </div>
+</div>
       <div style="border: 1px solid #e5e7eb; border-top: none; padding: 30px; border-radius: 0 0 8px 8px;">
         <div style="text-align: center; margin-bottom: 20px;">
           <span style="font-size: 48px;">${opts.icon}</span>
@@ -605,11 +629,34 @@ export class EmailService {
       `;
 
     const html = `
-    <div style="border: 1px solid #e5e7eb; font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-       <div style="background: #FFFFFF; padding: 20px; border-radius: 8px 8px 0 0; text-align: center; border-bottom: 1px solid #e5e7eb; border-right: 1px solid #e5e7eb; border-top: 1px solid #e5e7eb; border-left: 1px solid #e5e7eb;">
-        <img src="${BRAND.logoUrl}" alt="${BRAND.name}" style="height: 48px; width: 200px; display: block; margin: 0 auto 8px; color: #1a56db; font-size: 20px; font-weight: bold; line-height: 48px;" />
-      </div>
-      <div style="border: 1px solid #e5e7eb; border-top: none; padding: 30px; border-radius: 0 0 8px 8px;">
+     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background:#FFFFFF;padding:20px;border-radius:8px 8px 0 0;text-align:center;border:1px solid #e5e7eb;">
+  <div
+    style="
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+    "
+  >
+    <span style="color:#0F172A;">Rivercash</span>
+<span style="color:#2563EB; margin-left:6px; display:inline-block;">Loans</span>
+  </div>
+
+  <div
+    style="
+      margin-top:6px;
+      font-size:12px;
+      color:#64748B;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      font-weight:600;
+    "
+  >
+    Personal Loans
+  </div>
+      <div style="border: 1px solid #e5e7eb; border-top: 1px solid #e5e7eb; padding: 30px; border-radius: 0 0 8px 8px;">
         <div style="text-align: center; margin-bottom: 20px;">
           <span style="font-size: 48px;">${config.icon}</span>
         </div>

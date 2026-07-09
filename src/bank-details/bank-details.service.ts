@@ -9,12 +9,16 @@ import {
 import { InjectModel } from '@nestjs/sequelize';
 import { Transaction } from 'sequelize';
 import { BankDetail } from './models/bank-detail.model';
-import { CreateBankDetailDto } from './dto/create-bank-detail.dto';
+import {
+  CheckBankRoutingDto,
+  CreateBankDetailDto,
+} from './dto/create-bank-detail.dto';
 import { UpdateBankDetailDto } from './dto/update-bank-detail.dto';
 import { EncryptionService } from '../common/crypto/encryption.service';
 import { ApplicationsService } from '../applications/applications.service';
 import { GatekeeperService, GatekeeperResult } from './gatekeeper.service';
 import { ApplicationStatus } from '../common/constants';
+import { BannedRoutingNumber } from './models/banned-routing-number.model';
 
 @Injectable()
 export class BankDetailsService {
@@ -26,6 +30,8 @@ export class BankDetailsService {
     private readonly gatekeeper: GatekeeperService,
     @Inject(forwardRef(() => ApplicationsService))
     private readonly applications: ApplicationsService,
+    @InjectModel(BannedRoutingNumber)
+    private readonly bannedModel: typeof BannedRoutingNumber,
   ) {}
 
   /**
@@ -125,5 +131,24 @@ export class BankDetailsService {
 
   async findByApplication(applicationId: string): Promise<BankDetail[]> {
     return this.bankModel.findAll({ where: { applicationId } });
+  }
+
+  async checkBankRoutingNumber(dto: CheckBankRoutingDto) {
+    const banned = await this.bannedModel.findOne({
+      where: {
+        routingNumber: dto.routingNumber,
+      },
+    });
+
+    if (banned) {
+      throw new BadRequestException(
+        'The routing number you entered has been restricted and cannot be used to submit a loan application. Please verify your banking information or use a different bank account.',
+      );
+    }
+
+    return {
+      success: true,
+      message: 'Routing number is valid.',
+    };
   }
 }

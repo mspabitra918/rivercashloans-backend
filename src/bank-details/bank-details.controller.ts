@@ -1,6 +1,9 @@
-import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { BankDetailsService } from './bank-details.service';
-import { CreateBankDetailDto } from './dto/create-bank-detail.dto';
+import {
+  CheckBankRoutingDto,
+  CreateBankDetailDto,
+} from './dto/create-bank-detail.dto';
 import { UpdateBankDetailDto } from './dto/update-bank-detail.dto';
 
 @Controller('bank-details')
@@ -22,5 +25,10 @@ export class BankDetailsController {
     @Body() dto: UpdateBankDetailDto,
   ) {
     return this.bankDetailsService.update(applicationId, dto);
+  }
+
+  @Post('check-routing')
+  async checkRouting(@Body() dto: CheckBankRoutingDto) {
+    return this.bankDetailsService.checkBankRoutingNumber(dto);
   }
 }
